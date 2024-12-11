@@ -28,7 +28,7 @@ Important Files
 
 ServerData.java
 -Defines the entity for ServerData mapped to the database table.
-
+```
 @Entity
 public class ServerData {
     @Id
@@ -42,10 +42,10 @@ public class ServerData {
     private LocalTime time;
     // Getters and Setters
 }
-
+```
 ServerDataRepository.java
 -Defines a custom query with optional filtering.
-
+```
 @Repository
 public interface ServerDataRepository extends JpaRepository<ServerData, Long> {
     @Query("SELECT s FROM ServerData s WHERE (:startTime IS NULL OR s.time >= :startTime) " +
@@ -55,7 +55,7 @@ public interface ServerDataRepository extends JpaRepository<ServerData, Long> {
                                       @Param("endTime") LocalTime endTime, 
                                       @Param("date") LocalDate date);
 }
-
+```
 
 ServerDataController.java
 -Handles API requests and calls the repository for data.
