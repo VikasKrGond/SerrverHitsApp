@@ -74,7 +74,7 @@ public class ServerDataController {
     }
 }
 ```
-How to Run Backend
+## **How to Run Backend**
 	-1.Navigate to the apihits-backend directory.
 	-2.Set up a MySQL database and configure application.properties:
 ```
@@ -82,11 +82,11 @@ spring.datasource.url=jdbc:mysql://localhost:3306/apihits_db
 spring.datasource.username=<DB_USERNAME>
 spring.datasource.password=<DB_PASSWORD>
 ```
-3.Build and run the application:
+-3.Build and run the application:
     `mvn spring-boot:run`
-4.The API will be available at `http://localhost:8080`
+-4.The API will be available at `http://localhost:8080`
 
-Integration
+## **Integration**
 -To integrate the frontend with the backend:
 	-1.	Update the API endpoint in Dashboard.jsx:
     `let url = "http://localhost:8080/api/dashboard" `
