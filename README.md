@@ -59,13 +59,12 @@ public interface ServerDataRepository extends JpaRepository<ServerData, Long> {
 
 ###ServerDataController.java
 -Handles API requests and calls the repository for data.
-
+```
 @RestController
 @RequestMapping("/api")
 public class ServerDataController {
     @Autowired
     private ServerDataRepository repository;
-
     @GetMapping("/dashboard")
     public List<ServerData> getDashboardData(
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
@@ -74,20 +73,22 @@ public class ServerDataController {
         return repository.findFilteredData(startTime, endTime, date);
     }
 }
-
+```
 ###How to Run Backend
 	-1.Navigate to the apihits-backend directory.
 	-2.Set up a MySQL database and configure application.properties:
--spring.datasource.url=jdbc:mysql://localhost:3306/apihits_db
--spring.datasource.username=<DB_USERNAME>
--spring.datasource.password=<DB_PASSWORD>
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/apihits_db
+spring.datasource.username=<DB_USERNAME>
+spring.datasource.password=<DB_PASSWORD>
+```
 ###3.Build and run the application:
-    -mvn spring-boot:run
-###4.The API will be available at http://localhost:8080.
+    `mvn spring-boot:run`
+###4.The API will be available at `http://localhost:8080`
 
 ##Integration
 -To integrate the frontend with the backend:
 	-1.	Update the API endpoint in Dashboard.jsx:
-    let url = "http://localhost:8080/api/dashboard";
+    `let url = "http://localhost:8080/api/dashboard" `
     	-2.	Ensure the backend is running (http://localhost:8080) before starting the frontend.
 	-3.	Use the Refresh button or filtering form to interact with the backend API.
