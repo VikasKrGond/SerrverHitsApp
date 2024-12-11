@@ -24,9 +24,9 @@ Query Parameters:
 	• startTime: Start time for filtering.
 	• endTime: End time for filtering.
 	• date: Specific date for filtering.
-##Important Files
+Important Files
 
-###ServerData.java
+ServerData.java
 -Defines the entity for ServerData mapped to the database table.
 
 @Entity
@@ -43,7 +43,7 @@ public class ServerData {
     // Getters and Setters
 }
 
-###ServerDataRepository.java
+ServerDataRepository.java
 -Defines a custom query with optional filtering.
 
 @Repository
@@ -57,7 +57,7 @@ public interface ServerDataRepository extends JpaRepository<ServerData, Long> {
 }
 
 
-###ServerDataController.java
+ServerDataController.java
 -Handles API requests and calls the repository for data.
 ```
 @RestController
@@ -74,21 +74,21 @@ public class ServerDataController {
     }
 }
 ```
-###How to Run Backend
-	-1.Navigate to the apihits-backend directory.
-	-2.Set up a MySQL database and configure application.properties:
+How to Run Backend
+	1.Navigate to the apihits-backend directory.
+	2.Set up a MySQL database and configure application.properties:
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/apihits_db
 spring.datasource.username=<DB_USERNAME>
 spring.datasource.password=<DB_PASSWORD>
 ```
-###3.Build and run the application:
+3.Build and run the application:
     `mvn spring-boot:run`
-###4.The API will be available at `http://localhost:8080`
+4.The API will be available at `http://localhost:8080`
 
-##Integration
--To integrate the frontend with the backend:
-	-1.	Update the API endpoint in Dashboard.jsx:
+Integration
+To integrate the frontend with the backend:
+	1.	Update the API endpoint in Dashboard.jsx:
     `let url = "http://localhost:8080/api/dashboard" `
-    	-2.	Ensure the backend is running (http://localhost:8080) before starting the frontend.
-	-3.	Use the Refresh button or filtering form to interact with the backend API.
+    	2.	Ensure the backend is running `(http://localhost:8080)` before starting the frontend.
+	3.	Use the Refresh button or filtering form to interact with the backend API.
