@@ -33,3 +33,78 @@ Important Files
 ServerData.java
 
 Defines the entity for ServerData mapped to the database table.
+
+@Entity
+public class ServerData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String serverName;
+    private Integer totalHits;
+    private Integer successfulHits;
+    private Integer failedHits;
+    private LocalDate date;
+    private LocalTime time;
+
+    // Getters and Setters
+}
+
+ServerDataRepository.java
+
+Defines a custom query with optional filtering.
+
+@Repository
+public interface ServerDataRepository extends JpaRepository<ServerData, Long> {
+    @Query("SELECT s FROM ServerData s WHERE (:startTime IS NULL OR s.time >= :startTime) " +
+            "AND (:endTime IS NULL OR s.time <= :endTime) " +
+            "AND (:date IS NULL OR s.date = :date)")
+    List<ServerData> findFilteredData(@Param("startTime") LocalTime startTime, 
+                                      @Param("endTime") LocalTime endTime, 
+                                      @Param("date") LocalDate date);
+}
+
+
+ServerDataController.java
+
+Handles API requests and calls the repository for data.
+
+@RestController
+@RequestMapping("/api")
+public class ServerDataController {
+    @Autowired
+    private ServerDataRepository repository;
+
+    @GetMapping("/dashboard")
+    public List<ServerData> getDashboardData(
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return repository.findFilteredData(startTime, endTime, date);
+    }
+}
+
+How to Run Backend
+
+	1.	Navigate to the apihits-backend directory.
+	2.	Set up a MySQL database and configure application.properties:
+
+    spring.datasource.url=jdbc:mysql://localhost:3306/apihits_db
+spring.datasource.username=<DB_USERNAME>
+spring.datasource.password=<DB_PASSWORD>
+
+	3.	Build and run the application:
+
+    mvn spring-boot:run
+
+    	4.	The API will be available at http://localhost:8080.
+
+Integration
+
+To integrate the frontend with the backend:
+
+	1.	Update the API endpoint in Dashboard.jsx:
+    let url = "http://localhost:8080/api/dashboard";
+
+    	2.	Ensure the backend is running (http://localhost:8080) before starting the frontend.
+	3.	Use the Refresh button or filtering form to interact with the backend API.
