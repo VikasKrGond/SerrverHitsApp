@@ -18,3 +18,18 @@ The frontend is built using **React.js** and styled using inline CSS. It fetches
 ---
 
 ### **Folder Structure**
+
+API Endpoints
+
+	1.	GET /api/dashboard
+Fetches server data with optional filtering by date and time.
+Query Parameters:
+	•	startTime: Start time for filtering.
+	•	endTime: End time for filtering.
+	•	date: Specific date for filtering.
+
+Important Files
+
+ServerData.java
+
+Defines the entity for ServerData mapped to the database table.
