@@ -1,0 +1,14 @@
+[
+  {
+    "server": "112",
+    "totalHits": 100,
+    "successfulHits": 80,
+    "failedHits": 20
+  },
+  {
+    "server": "113",
+    "totalHits": 120,
+    "successfulHits": 110,
+    "failedHits": 10
+  }
+]
